@@ -11,7 +11,7 @@ import (
 	cwtypes "github.com/aws/aws-sdk-go-v2/service/cloudwatch/types"
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
-	"github.com/storygame/cloudcost/internal/models"
+	"github.com/Anoop-v-official/cloudcost/internal/models"
 )
 
 type ScheduleScanner struct {

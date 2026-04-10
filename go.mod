@@ -1,4 +1,4 @@
-module github.com/storygame/cloudcost
+module github.com/Anoop-v-official/cloudcost
 
 go 1.22
 

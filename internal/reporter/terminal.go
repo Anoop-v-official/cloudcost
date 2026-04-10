@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/fatih/color"
-	"github.com/storygame/cloudcost/internal/models"
+	"github.com/Anoop-v-official/cloudcost/internal/models"
 )
 
 var (

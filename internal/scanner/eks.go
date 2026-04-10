@@ -7,7 +7,7 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/eks"
-	"github.com/storygame/cloudcost/internal/models"
+	"github.com/Anoop-v-official/cloudcost/internal/models"
 )
 
 // EKS control plane costs $0.10/hr = $73/mo in all regions

@@ -9,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/cloudwatch"
 	cwtypes "github.com/aws/aws-sdk-go-v2/service/cloudwatch/types"
 	"github.com/aws/aws-sdk-go-v2/service/rds"
-	"github.com/storygame/cloudcost/internal/models"
+	"github.com/Anoop-v-official/cloudcost/internal/models"
 )
 
 // RDS/DocumentDB pricing per hour (ap-south-1)

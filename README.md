@@ -16,8 +16,6 @@
 
 CloudCost is an open-source CLI tool that scans your AWS infrastructure and finds cost optimization opportunities — unused resources, oversized instances, idle databases, and forgotten snapshots that are silently draining your budget.
 
-**Real-world result:** We ran CloudCost on a production AWS account and found **$467/month ($5,604/year)** in waste in under 10 seconds.
-
 ## Why CloudCost?
 
 Most teams don't realize they're overspending until the monthly bill arrives. CloudCost catches waste the moment you run it:
@@ -56,7 +54,7 @@ Most teams don't realize they're overspending until the monthly bill arrives. Cl
 ### From source
 
 ```bash
-git clone https://github.com/storygamepvtltd/cloudcost.git
+git clone https://github.com/YOUR_USERNAME/cloudcost.git
 cd cloudcost
 go mod tidy
 make build
@@ -106,7 +104,7 @@ That's it. You'll see a color-coded report with every finding, savings amount, a
 cloudcost scan
 
 # Scan specific profile and region
-cloudcost scan --profile myprofile --region ap-south-1
+cloudcost scan --profile myprofile --region us-east-1
 
 # Scan all major AWS regions
 cloudcost scan --profile myprofile --all-regions
@@ -130,9 +128,9 @@ cloudcost scan --snapshot-age 60 --ami-age 180
   ☁️  CloudCost Scanner
   Finding money hiding in your AWS account...
 
-  📋 Account: 021891615535
-  👤 Profile: storygame
-  🌍 Regions: [ap-south-1]
+  📋 Account: 123456789012
+  👤 Profile: myprofile
+  🌍 Regions: [us-east-1]
 
     📦 Scanning EBS volumes & snapshots... ✓
     🖥️  Scanning EC2 instances & IPs... ✓
@@ -147,26 +145,31 @@ cloudcost scan --snapshot-age 60 --ami-age 180
     🔴 Scanning ElastiCache clusters... ✓
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ☁️  CloudCost Report — Account: 021891615535
+  ☁️  CloudCost Report — Account: 123456789012
   Scanned: 2026-04-10 12:00:00
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  💰 Total Potential Savings: $467.00/month ($5,604.00/year)
-  📊 Findings: 12 total | 3 critical | 5 high | 3 medium | 1 low
+  💰 Total Potential Savings: $312.00/month ($3,744.00/year)
+  📊 Findings: 8 total | 2 critical | 3 high | 2 medium | 1 low
 
-  🔴 CRITICAL — Act Now (save $320.57/mo)
+  🔴 CRITICAL — Act Now (save $244.00/mo)
   ────────────────────────────────────────
   1. Idle DocumentDB cluster (0 connections)                   $167.00/mo
-     docdb-prod [ap-south-1]
+     my-docdb-cluster [us-east-1]
      → Delete the cluster if no longer needed
 
   2. Unattached EBS volume (800 GB, gp3)                        $76.80/mo
-     vol-066cf04db9857c00d [ap-south-1]
+     vol-0abc123def456 [us-east-1]
      → Delete the volume
 
-  3. Old snapshot (1500 GB, 30 days old)                        $70.57/mo
-     snap-0426d55ecc3819282 [ap-south-1]
-     → Delete if no longer needed
+  🟡 HIGH — Recommended (save $52.00/mo)
+  ────────────────────────────────────────
+  3. Over-provisioned: staging-server (t3.xlarge → t3.medium)   $42.00/mo
+     i-0abc123def456 [us-east-1]
+     → Downsize from t3.xlarge to t3.medium
+
+  4. 3 unused Elastic IPs                                       $10.80/mo
+     → Release unattached Elastic IPs
 ```
 
 ## Required IAM Permissions
@@ -266,11 +269,11 @@ CloudCost uses only `Describe*`, `List*`, and `Get*` API calls. It will never cr
 - [x] Lambda function scanner
 - [x] CloudWatch Logs scanner
 - [x] ElastiCache scanner
-- [ ] AI-powered analysis (Claude integration)
+- [ ] AI-powered analysis
 - [ ] HTML report export
 - [ ] Slack/Email notifications
 - [ ] Multi-cloud support (GCP, Azure)
-- [ ] Web dashboard (CloudCost SaaS)
+- [ ] Web dashboard (SaaS)
 
 ## Contributing
 
@@ -285,9 +288,3 @@ Contributions are welcome! Please open an issue or submit a pull request.
 ## License
 
 MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-<p align="center">
-  Built by <a href="https://storygame.io">Storygame Tech Ltd.</a> — Enterprise AI Agents & Cloud Infrastructure
-</p>

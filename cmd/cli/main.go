@@ -8,10 +8,10 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
-	"github.com/storygame/cloudcost/internal/config"
-	"github.com/storygame/cloudcost/internal/models"
-	"github.com/storygame/cloudcost/internal/reporter"
-	"github.com/storygame/cloudcost/internal/scanner"
+	"github.com/Anoop-v-official/cloudcost/internal/config"
+	"github.com/Anoop-v-official/cloudcost/internal/models"
+	"github.com/Anoop-v-official/cloudcost/internal/reporter"
+	"github.com/Anoop-v-official/cloudcost/internal/scanner"
 )
 
 var (
