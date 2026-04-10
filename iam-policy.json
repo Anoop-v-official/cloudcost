@@ -1,0 +1,36 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CloudCostReadOnly",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeVolumes",
+        "ec2:DescribeSnapshots",
+        "ec2:DescribeInstances",
+        "ec2:DescribeAddresses",
+        "ec2:DescribeImages",
+        "ec2:DescribeNatGateways",
+        "elasticloadbalancing:DescribeLoadBalancers",
+        "elasticloadbalancing:DescribeTargetGroups",
+        "elasticloadbalancing:DescribeTargetHealth",
+        "cloudwatch:GetMetricStatistics",
+        "sts:GetCallerIdentity",
+        "rds:DescribeDBInstances",
+        "rds:DescribeDBClusters",
+        "eks:ListClusters",
+        "eks:DescribeCluster",
+        "eks:ListNodegroups",
+        "eks:DescribeNodegroup",
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketLocation",
+        "s3:GetBucketVersioning",
+        "s3:GetLifecycleConfiguration",
+        "lambda:ListFunctions",
+        "logs:DescribeLogGroups",
+        "elasticache:DescribeCacheClusters"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
