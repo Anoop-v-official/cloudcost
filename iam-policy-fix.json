@@ -1,0 +1,37 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CloudCostFixMode",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DeleteVolume",
+        "ec2:DeleteSnapshot",
+        "ec2:ReleaseAddress",
+        "ec2:DeregisterImage",
+        "ec2:DeleteNatGateway",
+        "ec2:StopInstances",
+        "ec2:StartInstances",
+        "ec2:ModifyInstanceAttribute",
+        "ec2:ModifyVolume",
+        "elasticloadbalancing:DeleteLoadBalancer",
+        "elasticloadbalancing:DeleteTargetGroup",
+        "rds:DeleteDBInstance",
+        "rds:DeleteDBCluster",
+        "rds:ModifyDBInstance",
+        "eks:DeleteCluster",
+        "eks:DeleteNodegroup",
+        "lambda:DeleteFunction",
+        "logs:PutRetentionPolicy",
+        "logs:DeleteLogGroup",
+        "elasticache:DeleteCacheCluster",
+        "elasticache:ModifyCacheCluster",
+        "events:PutRule",
+        "events:PutTargets",
+        "s3:PutLifecycleConfiguration",
+        "s3:DeleteBucket"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

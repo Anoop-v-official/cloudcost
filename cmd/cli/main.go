@@ -9,21 +9,23 @@ import (
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 	"github.com/Anoop-v-official/cloudcost/internal/config"
+	"github.com/Anoop-v-official/cloudcost/internal/interactive"
 	"github.com/Anoop-v-official/cloudcost/internal/models"
 	"github.com/Anoop-v-official/cloudcost/internal/reporter"
 	"github.com/Anoop-v-official/cloudcost/internal/scanner"
 )
 
 var (
-	profile     string
-	region      string
-	roleARN     string
-	output      string
-	verbose     bool
-	snapshotAge int
-	amiAge      int
-	allRegions  bool
-	outputFile  string
+	profile      string
+	region       string
+	roleARN      string
+	output       string
+	verbose      bool
+	snapshotAge  int
+	amiAge       int
+	allRegions   bool
+	outputFile   string
+	interactiveMode bool
 )
 
 func main() {
@@ -51,8 +53,27 @@ that can save you hundreds of dollars per month.`,
 	scanCmd.Flags().IntVar(&amiAge, "ami-age", 90, "Flag AMIs older than N days")
 	scanCmd.Flags().BoolVar(&allRegions, "all-regions", false, "Scan all major AWS regions")
 	scanCmd.Flags().StringVar(&outputFile, "save", "", "Save report to file (JSON)")
+	scanCmd.Flags().BoolVar(&interactiveMode, "fix", false, "Interactive fix mode — walk through findings and fix them")
+
+	fixCmd := &cobra.Command{
+		Use:   "fix",
+		Short: "Interactive fix mode — scan and fix issues one by one",
+		Long:  "Scans your AWS account then walks you through each finding, letting you fix, skip, or ignore each one.",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			interactiveMode = true
+			return runScan(cmd, args)
+		},
+	}
+
+	fixCmd.Flags().StringVarP(&profile, "profile", "p", "", "AWS CLI profile name")
+	fixCmd.Flags().StringVarP(&region, "region", "r", "", "AWS region to scan")
+	fixCmd.Flags().StringVar(&roleARN, "role-arn", "", "IAM Role ARN for cross-account access")
+	fixCmd.Flags().IntVar(&snapshotAge, "snapshot-age", 30, "Flag snapshots older than N days")
+	fixCmd.Flags().IntVar(&amiAge, "ami-age", 90, "Flag AMIs older than N days")
+	fixCmd.Flags().BoolVar(&allRegions, "all-regions", false, "Scan all major AWS regions")
 
 	rootCmd.AddCommand(scanCmd)
+	rootCmd.AddCommand(fixCmd)
 
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
@@ -270,6 +291,12 @@ func runScan(cmd *cobra.Command, args []string) error {
 
 	// Build report
 	report := buildReport(accountID, allFindings)
+
+	// Interactive fix mode
+	if interactiveMode {
+		interactive.RunInteractive(report, profile, region)
+		return nil
+	}
 
 	// Output
 	fmt.Println()
