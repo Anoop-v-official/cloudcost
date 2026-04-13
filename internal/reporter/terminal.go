@@ -73,9 +73,15 @@ func PrintReport(report models.ScanReport) {
 	// Footer
 	fmt.Println()
 	cyan.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+	dim.Println("  Run 'cloudcost fix' to interactively fix findings one by one")
 	dim.Println("  Run with --output json for machine-readable output")
-	dim.Println("  Run with --verbose for detailed CLI commands")
 	cyan.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+	fmt.Println()
+	fmt.Println("  ⭐ Found this useful? Star us on GitHub:")
+	cyan.Println("     https://github.com/Anoop-v-official/cloudcost")
+	fmt.Println()
+	dim.Println("  🚀 Want automated daily scans, alerts & a dashboard?")
+	dim.Println("     CloudCost SaaS is coming soon — stay tuned!")
 	fmt.Println()
 }
 

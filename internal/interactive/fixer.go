@@ -361,4 +361,11 @@ func printSummary(totalFixed float64, fixed, skipped, ignored, remaining int) {
 	fmt.Println()
 	dim.Println("  Run 'cloudcost scan' again to verify the fixes.")
 	fmt.Println()
+	fmt.Println("  ⭐ Found this useful? Star us on GitHub:")
+	cyan.Println("     https://github.com/Anoop-v-official/cloudcost")
+	fmt.Println()
+	dim.Println("  🚀 Tired of running this manually?")
+	dim.Println("     CloudCost SaaS is coming soon — automated daily scans,")
+	dim.Println("     alerts, dashboard & team features. Stay tuned!")
+	fmt.Println()
 }
