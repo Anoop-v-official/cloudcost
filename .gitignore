@@ -34,3 +34,4 @@ report*.json
 
 # Vendor (use go mod)
 /vendor/
+*.tar.gz
